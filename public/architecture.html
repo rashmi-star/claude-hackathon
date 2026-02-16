@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus — Architecture</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .sub {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+    #diagram {
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 100%;
+      overflow: auto;
+    }
+    .mermaid { background: transparent !important; }
+    .mermaid svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <h1>Nexus — Autonomous AI Engineering Team</h1>
+  <p class="sub">Built with Claude Opus 4.6 · Architecture for demo video</p>
+  <div id="diagram">
+    <pre class="mermaid">
+flowchart LR
+  subgraph Input
+    I[Instruction]
+  end
+
+  subgraph Claude["Claude Opus 4.6"]
+    R[Router]
+    D[Detect]
+    P[Plan]
+    PT[Patch]
+    M[Manager]
+    RF[Reflector]
+  end
+
+  subgraph Agents["Agents (scanner)"]
+    FE[Frontend]
+    BE[Backend]
+  end
+
+  subgraph Memory["Memory"]
+    MEM[(memory.json)]
+    COD[Codrops]
+  end
+
+  subgraph Output
+    A[Apply]
+    V[Verify]
+  end
+
+  I --> R
+  R --> FE
+  R --> BE
+  FE --> M
+  BE --> M
+  M --> D
+  D --> P
+  P --> PT
+  PT --> A
+  A --> V
+  V --> RF
+  RF --> MEM
+  COD --> MEM
+  MEM -.-> D
+  MEM -.-> P
+    </pre>
+  </div>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
+  </script>
+</body>
+</html>
